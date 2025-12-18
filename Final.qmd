@@ -1,0 +1,11 @@
+### Introduction:
+
+For this project we were curious about what things impact elections. We gathered some election data as well as economic data and did some basic exploratory data analysis to come up with some interesting findings.
+
+### Data Collection:
+
+Getting our data was quite the process. We gathered data from a bunch of different sources and then combined them all together to make our dataset. We scraped some tables and that presented a few challenges especially with the election data that we have because each of the tables was formatted a little differently from each other, so we had to hard code the scraping for each table. There were also some parts of the data that we gathered that were simple csvs that just needed to be downloaded and wrangled. So after we gathered all of the data we wrangled them so that they could all be easily merged together. Ultimately we have created a data set that includes election data from 1948 onwards as well as the GDP, CPI and unemployment rates for every month from 1948 until now as well. We wanted to gather this data to see if we could do an interesting study on predictors for which political party would be elected.
+
+### Data Wrangling:
+
+There was a lot of wrangling that we needed to do for this data set. There were three small downloadable csvs that we got and the wrangling for those mostly consisted of renaming columns, and calculating a few things to make new columns. The larger part of the wrangling came with the presidents and election portions of the dataset. Both of these had some missing data that needed to be filled in. We couldn’t used a mean or median imputation for filling those values either as some of them were just unknown or were president names that didn’t get scraped properly. In order to fix that we needed to be very specific in filling in those values. The thing that worked best was actually just to create some lists and then merge that with the data set in order to fill in those missing values. Then for the last part of the wrangling we had to make sure that the data had similar columns and formats so that we could merge them properly. 

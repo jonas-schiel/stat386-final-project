@@ -1,0 +1,245 @@
+### Demonstration of the Functions:
+
+```{python}
+#| echo: False
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def wrangle_data(filepath, value_col, drop_rows=None, rename_from=None):
+    df = pd.read_csv(filepath)
+    
+    if drop_rows is not None:
+        df = df.drop(drop_rows)
+    
+    df['Year'] = df['observation_date'].str.extract(r'(\d{4})')
+    df['Month'] = df['observation_date'].str.extract(r'((?<=\d{4}-)\d{2})')
+    
+    if rename_from is not None:
+        df[value_col] = df[rename_from]
+        df = df.drop(rename_from, axis=1)
+    
+    df = df.drop('observation_date', axis=1)
+    
+    df['Month'] = df['Month'].astype(int)
+    df['Month'] = pd.to_datetime(df['Month'], format='%m').dt.month_name()
+    df['Year'] = df['Year'].astype(int)
+    
+    column_order = ['Month', 'Year', value_col]
+    df = df[column_order]
+    
+    return df
+
+def merge_and_sort_data(df1, df2, df3):
+    combined = pd.merge(df1, df2, on=['Month', 'Year'], how='outer')
+    
+    data = pd.merge(combined, df3, on=['Year', 'Month'], how='outer')
+    
+    month_order = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    data["Month"] = pd.Categorical(data["Month"], categories=month_order, ordered=True)
+    
+    data = data.sort_values(["Year", "Month"]).reset_index(drop=True)
+    
+    return data
+
+
+
+def add_presidents_to_data(data, html_text, min_year=1948):
+
+    tables = pd.read_html(html_text)
+    df = tables[0]
+
+    df["No."] = df["No.[a]"]
+    df["President"] = df["Name (birth–death)"].str.extract(
+        r"([A-Z][a-z]+\W[A-Z][a-z]+)"
+    )
+    df["Party"] = df["Party[b][17].1"]
+
+    df[["Start", "End"]] = df["Term[16]"].str.split("–", expand=True)
+    df["Start_Month"] = df["Start"].str.extract(r"([A-Z][a-z]+)")
+    df["Start_Year"] = df["Start"].str.extract(r"(\d{4})")
+    df["End_Month"] = df["End"].str.extract(r"([A-Z][a-z]+)")
+    df["End_Year"] = df["End"].str.extract(r"(\d{4})")
+
+    df["End_Year"] = df["End_Year"].fillna(2025)
+    df.loc[df["End_Month"] == "Incumbent", "End_Month"] = "November"
+
+    df["Start_Date"] = pd.to_datetime(
+        df["Start_Month"] + " " + df["Start_Year"].astype(str)
+    )
+    df["End_Date"] = pd.to_datetime(
+        df["End_Month"] + " " + df["End_Year"].astype(str)
+    )
+
+    rows = []
+    for _, row in df.iterrows():
+        dates = pd.date_range(row["Start_Date"], row["End_Date"], freq="MS")
+        for d in dates:
+            rows.append({
+                "Year": d.year,
+                "Month": d.month_name(),
+                "President": row["President"],
+                "Party": row["Party"],
+            })
+
+    Presidents = pd.DataFrame(rows)
+    Presidents = Presidents[Presidents["Year"] >= min_year]
+
+    Final = pd.merge(data, Presidents, on=["Year", "Month"], how="outer")
+
+    Final["Month"] = Final["Month"].str.strip()
+    Final["President"] = Final["President"].str.strip()
+
+    month_map = {
+        "January": 1, "February": 2, "March": 3, "April": 4,
+        "May": 5, "June": 6, "July": 7, "August": 8,
+        "September": 9, "October": 10, "November": 11, "December": 12
+    }
+
+    terms = [
+        ("Harry S Truman", (1945, "April"), (1953, "January")),
+        ("Dwight D Eisenhower", (1953, "January"), (1961, "January")),
+        ("John F Kennedy", (1961, "January"), (1963, "November")),
+        ("Lyndon B Johnson", (1963, "November"), (1969, "January")),
+    ]
+
+    for i, row in Final.iterrows():
+        if pd.isna(row["President"]):
+            current = (row["Year"], month_map[row["Month"]])
+
+            for pres, (sy, sm), (ey, em) in terms:
+                start = (sy, month_map[sm])
+                end = (ey, month_map[em])
+
+                if start <= current < end:
+                    Final.loc[i, "President"] = pres
+                    break
+
+    month_order = list(month_map.keys())
+    Final["Month"] = pd.Categorical(
+        Final["Month"], categories=month_order, ordered=True
+    )
+
+    Final = Final.sort_values(["Year", "Month"]).reset_index(drop=True)
+    Final = Final.drop_duplicates()
+    Final["GDP"] = Final["GDP"].interpolate(method="linear") \
+                           .ffill()
+    Final = Final.iloc[:-2]
+
+    return Final
+
+def get_presidents_html(ua, email, url="https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States"):
+    r = requests.get(url, headers={"User-Agent": ua, "From": email}, timeout=15)
+    r.raise_for_status()  
+    return r.text
+
+GDP = wrangle_data(
+    filepath='GDP.csv',
+    value_col='GDP',
+    drop_rows=[0, 1, 2, 3]
+)
+
+CPI = wrangle_data(
+    filepath='CPI.csv',
+    value_col='CPI',
+    drop_rows=range(12),
+    rename_from='CPIAUCSL'
+)
+
+url = 'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States' 
+email = "skirk03@byu.edu" 
+ua = f"STAT386-class-scraper/1.0 (+{email})" 
+r = requests.get(url, headers={"User-Agent": ua, "From": email}, timeout=15)
+my_email = "skirk03@byu.edu"
+
+def simple_eda(df, scatter_points=False):
+    
+    vote_cols = [col for col in df.columns if "Percentage" in col]
+    for col in vote_cols:
+        df[col] = df[col].astype(str).str.rstrip("%").astype(float)
+    
+    econ_cols = ["CPI", "UNRATE", "GDP"]
+    
+    econ_cols = [col for col in econ_cols if col in df.columns]
+    
+    colors = ["red", "blue"]
+    fig, axes = plt.subplots(1, len(econ_cols), figsize=(5 * len(econ_cols), 5), sharey=True)
+    
+    if len(econ_cols) == 1:
+        axes = [axes]
+    
+    for i, indicator in enumerate(econ_cols):
+        ax = axes[i]
+        for j, col in enumerate(vote_cols):
+            sns.regplot(
+                x=indicator,
+                y=col,
+                data=df,
+                ax=ax,
+                scatter=scatter_points,
+                line_kws={"linewidth": 2, "color": colors[j % len(colors)]},
+                ci=None
+            )
+        ax.set_title(f"{indicator} vs Vote Share", fontsize=12, fontweight='bold')
+        ax.set_xlabel(f"{indicator} Value", fontsize=10)
+        if i == 0:
+            ax.set_ylabel("Vote Percentage (%)", fontsize=10)
+        ax.grid(True)
+    
+    handles = [plt.Line2D([0], [0], color=colors[j % len(colors)], lw=2) for j, col in enumerate(vote_cols)]
+    labels = [col.replace(" Percentage", "") for col in vote_cols]
+    fig.legend(handles, labels, loc="upper right", fontsize=10)
+    fig.suptitle("Trend Lines Between Economic Conditions and Vote Share", fontsize=14, fontweight='bold', y=1.05)
+    plt.tight_layout()
+    plt.show()
+    
+    numeric_cols = df.select_dtypes(include='number').columns.tolist()
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(df[numeric_cols].corr(), annot=True, cmap="coolwarm", fmt=".2f")
+    plt.title("Correlation Heatmap")
+    plt.show()
+
+df = pd.read_csv('economic_election_data.csv')
+df = df.drop('Unnamed: 0', axis = 1)
+
+```
+
+
+This function, wrangle_data, allows us to wrangle downloadable csvs about economic data. Here we plug in our unemployment rate dataset and it does all of the wrangling and formatting for us. Here are just the first five rows of what the data will look like afterwards.
+```{python}
+UNRATE = wrangle_data(
+    filepath='UNRATE.csv',
+    value_col='UNRATE'
+)
+
+UNRATE.head()
+```
+
+The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.
+```{python}
+combined_data = merge_and_sort_data(UNRATE, GDP, CPI)
+combined_data.head()
+```
+
+Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.
+```{python}
+url = 'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States' 
+email = "skirk03@byu.edu" 
+ua = f"STAT386-class-scraper/1.0 (+{email})" 
+r = requests.get(url, headers={"User-Agent": ua, "From": email}, timeout=15)
+
+text = get_presidents_html(ua = f"STAT386-class-scraper/1.0 (+{email})", email = "skirk03@byu.edu")
+
+Final_df = add_presidents_to_data(combined_data, text)
+Final_df.head(20)
+```
+
+Our last function does some simple eda for us to show us how the ecomonic features impact the voting percentages and creates a correlation plot that allows us to easily the factors with the most impact. Those plots are here below.
+```{python}
+simple_eda(df, scatter_points= False)
+```

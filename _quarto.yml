@@ -1,0 +1,60 @@
+project:
+  type: website
+  output-dir: docs
+
+execute:
+  python: venv/bin/python
+  output-dir: docs
+
+website:
+  title: "Sam Kirkham - Data Science Portfolio"
+  description: "A showcase of my data science projects and learning journey"
+  
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.md
+      - text: "About Me"
+        href: aboutme.md
+      - text: "Blog"
+        href: blog.qmd
+      - text: "Blog 2"
+        href: DataAcquisation.qmd
+      - text: "Final"
+        href: Final.qmd
+      - text: "Demo"
+        href: Package_Demo.qmd
+      - text: "Projects"
+        menu:
+          - text: "Home"
+            href: index.md
+          - text: "---" 
+          - text: "About Me"
+            href: aboutme.md
+          - text: "Data Wrangling ang Visualization"
+            href: blog.qmd
+          - text: "BYU Betting Data (Blog 2)"
+            href: DataAcquisation.qmd
+    right:
+      - icon: github
+        href: https://github.com/Sam-Kirkham
+      - icon: linkedin
+        href: https://www.linkedin.com/in/samuel-kirkham-1b3730385/
+        
+
+  sidebar:
+    - title: "Projects"
+      contents:
+        - index.md
+        - aboutme.md
+        - blog.qmd
+        - DataAcquisation.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+    code-tools: true
+    css: styles.css
