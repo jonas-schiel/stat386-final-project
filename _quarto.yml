@@ -15,7 +15,7 @@ website:
         href: Package_Demo.html
       - text: "Projects"
         menu:
-          - text: "Final"
+          - text: "Write Up"
             href: Final.html
           - text: "Demo"
             href: Package_Demo.html
