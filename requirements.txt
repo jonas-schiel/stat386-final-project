@@ -5,3 +5,4 @@ seaborn
 streamlit
 requests
 beautifulsoup4
+-e .
