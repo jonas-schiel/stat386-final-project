@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>package_demo – Sam Kirkham - Data Science Portfolio</title>
+<title>package_demo – Sam Kirkham and Jonas Shiel - Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Sam Kirkham - Data Science Portfolio</span>
+    <span class="navbar-title">Sam Kirkham and Jonas Shiel - Final Project</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -234,14 +234,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="0dad75fc" class="cell" data-execution_count="1">
+<div id="40c9060b" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_47477/1578626720.py:203: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_50794/1578626720.py:203: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
   df = pd.read_csv('economic_election_data.csv')</code></pre>
 </div>
 </div>
 <p>This function, wrangle_data, allows us to wrangle downloadable csvs about economic data. Here we plug in our unemployment rate dataset and it does all of the wrangling and formatting for us. Here are just the first five rows of what the data will look like afterwards.</p>
-<div id="d7fcc419" class="cell" data-execution_count="2">
+<div id="eecd04c8" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>UNRATE <span class="op">=</span> wrangle_data(</span>
@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.</p>
-<div id="d4257d45" class="cell" data-execution_count="3">
+<div id="694d69c6" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> merge_and_sort_data(UNRATE, GDP, CPI)</span>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.</p>
-<div id="4b0e0a5b" class="cell" data-execution_count="4">
+<div id="3eec6bea" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States'</span> </span>
@@ -385,11 +385,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Final_df.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_47477/1578626720.py:50: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_50794/1578626720.py:50: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
   tables = pd.read_html(html_text)
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_47477/1578626720.py:68: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_50794/1578626720.py:68: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["Start_Date"] = pd.to_datetime(
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_47477/1578626720.py:71: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_50794/1578626720.py:71: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["End_Date"] = pd.to_datetime(</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -617,7 +617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Our last function does some simple eda for us to show us how the ecomonic features impact the voting percentages and creates a correlation plot that allows us to easily the factors with the most impact. Those plots are here below.</p>
-<div id="f04994c6" class="cell" data-execution_count="5">
+<div id="173d2159" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simple_eda(df, election_years_only<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
