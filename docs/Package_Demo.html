@@ -201,14 +201,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="0e119586" class="cell" data-execution_count="1">
+<div id="6a8316a4" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:206: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:206: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
   df = pd.read_csv('economic_election_data.csv')</code></pre>
 </div>
 </div>
 <p>This function, wrangle_data, allows us to wrangle downloadable csvs about economic data. Here we plug in our unemployment rate dataset and it does all of the wrangling and formatting for us. Here are just the first five rows of what the data will look like afterwards.</p>
-<div id="feebd4f7" class="cell" data-execution_count="2">
+<div id="dc5efa88" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>UNRATE <span class="op">=</span> wrangle_data(</span>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.</p>
-<div id="b19dbb1e" class="cell" data-execution_count="3">
+<div id="062756d9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> merge_and_sort_data(UNRATE, GDP, CPI)</span>
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.</p>
-<div id="2ad92219" class="cell" data-execution_count="4">
+<div id="e93a71fe" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States'</span> </span>
@@ -352,11 +352,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Final_df.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:52: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:52: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
   tables = pd.read_html(html_text)
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:70: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:70: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["Start_Date"] = pd.to_datetime(
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["End_Date"] = pd.to_datetime(</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Another function we have allows for some basic eda and creates a correlation matrix for the factors that are used in our dataset and how they influence each other.</p>
-<div id="b50e7158" class="cell" data-execution_count="5">
+<div id="b30dee81" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simple_eda(df, election_years_only<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -677,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This econimic_trends_for_president function allows users to select a president of their choice and see the economic impact that took place during their presidency. There is an option to select just one of the specified economic evaluators or just two of them or even all three. Users can also filter based on the term that the president was serving in at the time.</p>
-<div id="d7e3310a" class="cell" data-execution_count="6">
+<div id="bec624a3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>economic_trends_for_president(df, <span class="st">"Donald Trump"</span>, indicators <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -793,28 +793,176 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="ad8f90fc" class="cell" data-execution_count="7">
+<div id="893d382e" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Donald Trump"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Barack Obama"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>{'president': 'Donald Trump',
- 'overall_economic_changes': {'start_year': np.int64(2016),
-  'end_year': np.int64(2025),
-  'years_in_office': np.int64(10),
-  'GDP_change': np.float64(11774.026999999998),
-  'CPI_change': np.float64(85.376),
-  'UNRATE_change': np.float64(-0.6999999999999993)},
- 'last_year_changes': {'year': np.int64(2025),
-  'GDP_change': np.float64(0.0),
-  'CPI_change': np.float64(4.046999999999969),
-  'UNRATE_change': np.float64(0.20000000000000018)},
- 'state_vote_swings': None,
- 'party_transition': {'current_party': 'R',
-  'following_president': None,
-  'next_party': None,
-  'party_switched': None}}</code></pre>
+<pre><code>{'president': 'Barack Obama',
+ 'overall_economic_changes': {'start_year': np.int64(2008),
+  'end_year': np.int64(2015),
+  'years_in_office': np.int64(8),
+  'GDP_change': np.float64(3558.265666666668),
+  'CPI_change': np.float64(23.555999999999983),
+  'UNRATE_change': np.float64(0.0)},
+ 'last_year_changes': {'year': np.int64(2015),
+  'GDP_change': np.float64(144.1826666666675),
+  'CPI_change': np.float64(1.275999999999982),
+  'UNRATE_change': np.float64(-0.40000000000000036)},
+ 'state_vote_swings': [{'State': 'Alabama',
+   'Republican_swing': 1.6000000000000014,
+   'Democratic_swing': -4.0},
+  {'State': 'Alaska',
+   'Republican_swing': -3.5,
+   'Democratic_swing': -4.199999999999996},
+  {'State': 'Arizona', 'Republican_swing': -5.0, 'Democratic_swing': 0.5},
+  {'State': 'Arkansas',
+   'Republican_swing': 0.0,
+   'Democratic_swing': -3.1999999999999957},
+  {'State': 'California', 'Republican_swing': -5.5, 'Democratic_swing': 1.5},
+  {'State': 'Colorado',
+   'Republican_swing': -2.8000000000000043,
+   'Democratic_swing': -3.299999999999997},
+  {'State': 'Connecticut',
+   'Republican_swing': 0.19999999999999574,
+   'Democratic_swing': -3.5},
+  {'State': 'Delaware',
+   'Republican_swing': 1.8999999999999986,
+   'Democratic_swing': -5.200000000000003},
+  {'State': 'Dist. of Col.',
+   'Republican_swing': -3.2,
+   'Democratic_swing': 0.0},
+  {'State': 'Florida',
+   'Republican_swing': -0.10000000000000142,
+   'Democratic_swing': -2.200000000000003},
+  {'State': 'Georgia',
+   'Republican_swing': -2.299999999999997,
+   'Democratic_swing': 0.3999999999999986},
+  {'State': 'Hawaii',
+   'Republican_swing': 2.1999999999999993,
+   'Democratic_swing': -8.299999999999997},
+  {'State': 'Idaho',
+   'Republican_swing': -5.200000000000003,
+   'Democratic_swing': -5.100000000000001},
+  {'State': 'Illinois',
+   'Republican_swing': -1.9000000000000057,
+   'Democratic_swing': -1.8000000000000043},
+  {'State': 'Indiana',
+   'Republican_swing': 2.799999999999997,
+   'Democratic_swing': -6.100000000000001},
+  {'State': 'Iowa',
+   'Republican_swing': 4.899999999999999,
+   'Democratic_swing': -10.299999999999997},
+  {'State': 'Kansas',
+   'Republican_swing': -3.0,
+   'Democratic_swing': -1.8999999999999986},
+  {'State': 'Kentucky',
+   'Republican_swing': 2.0,
+   'Democratic_swing': -5.099999999999994},
+  {'State': 'Louisiana',
+   'Republican_swing': 0.30000000000000426,
+   'Democratic_swing': -2.200000000000003},
+  {'State': 'Maine',
+   'Republican_swing': 3.8999999999999986,
+   'Democratic_swing': -8.5},
+  {'State': 'Maryland',
+   'Republican_swing': -2.0,
+   'Democratic_swing': -1.7000000000000028},
+  {'State': 'Massachusetts',
+   'Republican_swing': -4.700000000000003,
+   'Democratic_swing': -0.7000000000000028},
+  {'State': 'Michigan',
+   'Republican_swing': 2.799999999999997,
+   'Democratic_swing': -6.900000000000006},
+  {'State': 'Minnesota',
+   'Republican_swing': -0.10000000000000142,
+   'Democratic_swing': -6.300000000000004},
+  {'State': 'Mississippi',
+   'Republican_swing': 2.6000000000000014,
+   'Democratic_swing': -3.6999999999999957},
+  {'State': 'Missouri',
+   'Republican_swing': 3.0,
+   'Democratic_swing': -6.299999999999997},
+  {'State': 'Montana',
+   'Republican_swing': 1.1000000000000014,
+   'Democratic_swing': -5.800000000000004},
+  {'State': 'Nebraska',
+   'Republican_swing': -1.0999999999999943,
+   'Democratic_swing': -4.299999999999997},
+  {'State': 'Nevada',
+   'Republican_swing': -0.20000000000000284,
+   'Democratic_swing': -4.5},
+  {'State': 'New Hampshire',
+   'Republican_swing': 0.0,
+   'Democratic_swing': -5.200000000000003},
+  {'State': 'New Jersey',
+   'Republican_swing': 0.7999999999999972,
+   'Democratic_swing': -2.799999999999997},
+  {'State': 'New Mexico',
+   'Republican_swing': -2.799999999999997,
+   'Democratic_swing': -4.700000000000003},
+  {'State': 'New York',
+   'Republican_swing': 1.3999999999999986,
+   'Democratic_swing': -4.5},
+  {'State': 'North Carolina',
+   'Republican_swing': -0.6000000000000014,
+   'Democratic_swing': -2.1999999999999957},
+  {'State': 'North Dakota',
+   'Republican_swing': 4.700000000000003,
+   'Democratic_swing': -11.500000000000004},
+  {'State': 'Ohio',
+   'Republican_swing': 4.0,
+   'Democratic_swing': -7.100000000000001},
+  {'State': 'Oklahoma',
+   'Republican_swing': -1.5,
+   'Democratic_swing': -4.300000000000004},
+  {'State': 'Oregon',
+   'Republican_swing': -3.0,
+   'Democratic_swing': -4.100000000000001},
+  {'State': 'Pennsylvania',
+   'Republican_swing': 1.8999999999999986,
+   'Democratic_swing': -4.200000000000003},
+  {'State': 'Rhode Island',
+   'Republican_swing': 3.6999999999999957,
+   'Democratic_swing': -8.300000000000004},
+  {'State': 'South Carolina',
+   'Republican_swing': 0.29999999999999716,
+   'Democratic_swing': -3.3999999999999986},
+  {'State': 'South Dakota',
+   'Republican_swing': 3.6000000000000014,
+   'Democratic_swing': -8.2},
+  {'State': 'Tennessee',
+   'Republican_swing': 1.2000000000000028,
+   'Democratic_swing': -4.399999999999999},
+  {'State': 'Texas',
+   'Republican_swing': -5.0,
+   'Democratic_swing': 1.8000000000000043},
+  {'State': 'Utah',
+   'Republican_swing': -27.299999999999997,
+   'Democratic_swing': 2.8000000000000007},
+  {'State': 'Vermont',
+   'Republican_swing': -0.6999999999999993,
+   'Democratic_swing': -9.899999999999991},
+  {'State': 'Virginia',
+   'Republican_swing': -2.8999999999999986,
+   'Democratic_swing': -1.4000000000000057},
+  {'State': 'Washington',
+   'Republican_swing': -3.1999999999999957,
+   'Democratic_swing': -1.9000000000000057},
+  {'State': 'West Virginia',
+   'Republican_swing': 6.299999999999997,
+   'Democratic_swing': -9.0},
+  {'State': 'Wisconsin',
+   'Republican_swing': 1.2000000000000028,
+   'Democratic_swing': -6.399999999999999},
+  {'State': 'Wyoming',
+   'Republican_swing': -0.3999999999999915,
+   'Democratic_swing': -5.900000000000002}],
+ 'party_transition': {'current_party': 'D',
+  'following_president': 'Donald Trump',
+  'next_party': 'R',
+  'party_switched': True}}</code></pre>
 </div>
 </div>
 
@@ -1667,7 +1815,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-403"><a href="#cb11-403" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-404"><a href="#cb11-404" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Donald Trump"</span>)</span>
+<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Barack Obama"</span>)</span>
 <span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>

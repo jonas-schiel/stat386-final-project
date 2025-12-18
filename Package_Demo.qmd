@@ -391,5 +391,5 @@ economic_trends_for_president(df, "Donald Trump", indicators = None)
 ```
 
 ```{python}
-president_party_and_economic_analyis(df, "Donald Trump")
+president_party_and_economic_analyis(df, "Barack Obama")
 ``` 
