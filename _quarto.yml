@@ -1,38 +1,35 @@
 project:
   type: website
-  output-dir: docs        # <- where the rendered site goes
+  output-dir: docs
 
 website:
   title: "Sam Kirkham and Jonas Shiel - Final Project"
   description: "Political Data Analysis"
 
-
-  
   navbar:
     background: primary
     left:
       - text: "Final"
-        href: Final.qmd
+        href: Final.html
       - text: "Demo"
-        href: Package_Demo.qmd
+        href: Package_Demo.html
       - text: "Projects"
         menu:
           - text: "Final"
-            href: Final.qmd
+            href: Final.html
           - text: "Demo"
-            href: Package_Demo.qmd
+            href: Package_Demo.html
     right:
       - icon: github
         href: https://github.com/Sam-Kirkham
       - icon: linkedin
         href: https://www.linkedin.com/in/samuel-kirkham-1b3730385/
-        
 
   sidebar:
     - title: "Projects"
       contents:
-        - Final.qmd
-        - Package_Demo.qmd
+        - Final.html
+        - Package_Demo.html
 
 format:
   html:
