@@ -9,7 +9,7 @@ website:
   navbar:
     background: primary
     left:
-      - text: "Final"
+      - text: "Write Up"
         href: Final.html
       - text: "Demo"
         href: Package_Demo.html
