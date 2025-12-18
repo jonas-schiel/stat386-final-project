@@ -7,8 +7,8 @@ execute:
   output-dir: docs
 
 website:
-  title: "Sam Kirkham - Data Science Portfolio"
-  description: "A showcase of my data science projects and learning journey"
+  title: "Sam Kirkham and Jonas Shiel - Final Project"
+  description: "Political Data Analysis"
   
   navbar:
     background: primary
