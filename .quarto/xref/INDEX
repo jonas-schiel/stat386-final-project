@@ -1,0 +1,17 @@
+{
+  "Package_Demo.qmd": {
+    "Package_Demo.html": "36740b04"
+  },
+  "Final.qmd": {
+    "Final.html": "39d10118"
+  },
+  "scripts/president_data.ipynb": {
+    "president_data.html": "f4f63ca4"
+  },
+  "scripts/Presidents.ipynb": {
+    "Presidents.html": "fe38a786"
+  },
+  "scripts/merged_data.ipynb": {
+    "merged_data.html": "ecb1e692"
+  }
+}
