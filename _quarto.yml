@@ -13,29 +13,16 @@ website:
   navbar:
     background: primary
     left:
-      - text: "Home"
-        href: index.md
-      - text: "About Me"
-        href: aboutme.md
-      - text: "Blog"
-        href: blog.qmd
-      - text: "Blog 2"
-        href: DataAcquisation.qmd
       - text: "Final"
         href: Final.qmd
       - text: "Demo"
         href: Package_Demo.qmd
       - text: "Projects"
         menu:
-          - text: "Home"
-            href: index.md
-          - text: "---" 
-          - text: "About Me"
-            href: aboutme.md
-          - text: "Data Wrangling ang Visualization"
-            href: blog.qmd
-          - text: "BYU Betting Data (Blog 2)"
-            href: DataAcquisation.qmd
+          - text: "Final"
+            href: Final.qmd
+          - text: "Demo"
+            href: Package_Demo.qmd
     right:
       - icon: github
         href: https://github.com/Sam-Kirkham
@@ -46,10 +33,8 @@ website:
   sidebar:
     - title: "Projects"
       contents:
-        - index.md
-        - aboutme.md
-        - blog.qmd
-        - DataAcquisation.qmd
+        - Final.qmd
+        - Package_Demo.qmd
 
 format:
   html:
