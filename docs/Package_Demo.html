@@ -201,14 +201,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="14cc2223" class="cell" data-execution_count="1">
+<div id="0e119586" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57570/90618530.py:206: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:206: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
   df = pd.read_csv('economic_election_data.csv')</code></pre>
 </div>
 </div>
 <p>This function, wrangle_data, allows us to wrangle downloadable csvs about economic data. Here we plug in our unemployment rate dataset and it does all of the wrangling and formatting for us. Here are just the first five rows of what the data will look like afterwards.</p>
-<div id="391ccd00" class="cell" data-execution_count="2">
+<div id="feebd4f7" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>UNRATE <span class="op">=</span> wrangle_data(</span>
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.</p>
-<div id="da6c2dd3" class="cell" data-execution_count="3">
+<div id="b19dbb1e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> merge_and_sort_data(UNRATE, GDP, CPI)</span>
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.</p>
-<div id="5daa9792" class="cell" data-execution_count="4">
+<div id="2ad92219" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States'</span> </span>
@@ -352,11 +352,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Final_df.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57570/90618530.py:52: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:52: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
   tables = pd.read_html(html_text)
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57570/90618530.py:70: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:70: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["Start_Date"] = pd.to_datetime(
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57570/90618530.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_57892/90618530.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["End_Date"] = pd.to_datetime(</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Another function we have allows for some basic eda and creates a correlation matrix for the factors that are used in our dataset and how they influence each other.</p>
-<div id="b4cc909e" class="cell" data-execution_count="5">
+<div id="b50e7158" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simple_eda(df, election_years_only<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -677,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This econimic_trends_for_president function allows users to select a president of their choice and see the economic impact that took place during their presidency. There is an option to select just one of the specified economic evaluators or just two of them or even all three. Users can also filter based on the term that the president was serving in at the time.</p>
-<div id="e87ec409" class="cell" data-execution_count="6">
+<div id="d7e3310a" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>economic_trends_for_president(df, <span class="st">"Donald Trump"</span>, indicators <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -793,7 +793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="2aebfd51" class="cell" data-execution_count="7">
+<div id="ad8f90fc" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Donald Trump"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1668,7 +1668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-404"><a href="#cb11-404" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Donald Trump"</span>)</span>
-<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
