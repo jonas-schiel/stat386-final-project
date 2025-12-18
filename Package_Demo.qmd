@@ -380,11 +380,16 @@ Final_df = add_presidents_to_data(combined_data, text)
 Final_df.head(20)
 ```
 
-Our last function does some simple eda for us to show us how the ecomonic features impact the voting percentages and creates a correlation plot that allows us to easily the factors with the most impact. Those plots are here below.
+Another function we have allows for some basic eda and creates a correlation matrix for the factors that are used in our dataset and how they influence each other.
 ```{python}
 simple_eda(df, election_years_only=False)
 ```
 
+This econimic_trends_for_president function allows users to select a president of their choice and see the economic impact that took place during their presidency. There is an option to select just one of the specified economic evaluators or just two of them or even all three. Users can also filter based on the term that the president was serving in at the time.
 ```{python}
 economic_trends_for_president(df, "Donald Trump", indicators = None)
+```
+
+```{python}
+president_party_and_economic_analyis(df, "Donald Trump")
 ```
