@@ -176,8 +176,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#wrangle_data" id="toc-wrangle_data" class="nav-link active" data-scroll-target="#wrangle_data">wrangle_data</a></li>
+  <li><a href="#merge_and_sort_data" id="toc-merge_and_sort_data" class="nav-link" data-scroll-target="#merge_and_sort_data">merge_and_sort_data</a></li>
+  <li><a href="#get_presidents_html-add_presidents_to_data" id="toc-get_presidents_html-add_presidents_to_data" class="nav-link" data-scroll-target="#get_presidents_html-add_presidents_to_data">get_presidents_html &amp; add_presidents_to_data</a></li>
+  <li><a href="#simple_eda" id="toc-simple_eda" class="nav-link" data-scroll-target="#simple_eda">simple_eda</a></li>
+  <li><a href="#economic_trends_for_president" id="toc-economic_trends_for_president" class="nav-link" data-scroll-target="#economic_trends_for_president">economic_trends_for_president</a></li>
+  <li><a href="#president_party_and_economic_analysis" id="toc-president_party_and_economic_analysis" class="nav-link" data-scroll-target="#president_party_and_economic_analysis">president_party_and_economic_analysis</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -201,14 +212,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="6a8316a4" class="cell" data-execution_count="1">
+<div id="91e78927" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:206: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58870/90618530.py:206: DtypeWarning: Columns (4,7) have mixed types. Specify dtype option on import or set low_memory=False.
   df = pd.read_csv('economic_election_data.csv')</code></pre>
 </div>
 </div>
+<section id="wrangle_data" class="level3">
+<h3 class="anchored" data-anchor-id="wrangle_data">wrangle_data</h3>
 <p>This function, wrangle_data, allows us to wrangle downloadable csvs about economic data. Here we plug in our unemployment rate dataset and it does all of the wrangling and formatting for us. Here are just the first five rows of what the data will look like afterwards.</p>
-<div id="dc5efa88" class="cell" data-execution_count="2">
+<div id="39bc3566" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>UNRATE <span class="op">=</span> wrangle_data(</span>
@@ -268,8 +281,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="merge_and_sort_data" class="level3">
+<h3 class="anchored" data-anchor-id="merge_and_sort_data">merge_and_sort_data</h3>
 <p>The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.</p>
-<div id="062756d9" class="cell" data-execution_count="3">
+<div id="c9255ad9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> merge_and_sort_data(UNRATE, GDP, CPI)</span>
@@ -337,8 +353,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="get_presidents_html-add_presidents_to_data" class="level3">
+<h3 class="anchored" data-anchor-id="get_presidents_html-add_presidents_to_data">get_presidents_html &amp; add_presidents_to_data</h3>
 <p>Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.</p>
-<div id="e93a71fe" class="cell" data-execution_count="4">
+<div id="aec3bc60" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States'</span> </span>
@@ -352,11 +371,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Final_df.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:52: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+<pre><code>/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58870/90618530.py:52: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
   tables = pd.read_html(html_text)
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:70: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58870/90618530.py:70: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["Start_Date"] = pd.to_datetime(
-/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58473/90618530.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+/var/folders/60/p3sjh3zx3793rb8gcc5_7qn00000gn/T/ipykernel_58870/90618530.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   df["End_Date"] = pd.to_datetime(</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -583,8 +602,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="simple_eda" class="level3">
+<h3 class="anchored" data-anchor-id="simple_eda">simple_eda</h3>
 <p>Another function we have allows for some basic eda and creates a correlation matrix for the factors that are used in our dataset and how they influence each other.</p>
-<div id="b30dee81" class="cell" data-execution_count="5">
+<div id="7bba9aee" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simple_eda(df, election_years_only<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -676,8 +698,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  'econ_cols': ['CPI', 'UNRATE', 'GDP']}</code></pre>
 </div>
 </div>
+</section>
+<section id="economic_trends_for_president" class="level3">
+<h3 class="anchored" data-anchor-id="economic_trends_for_president">economic_trends_for_president</h3>
 <p>This econimic_trends_for_president function allows users to select a president of their choice and see the economic impact that took place during their presidency. There is an option to select just one of the specified economic evaluators or just two of them or even all three. Users can also filter based on the term that the president was serving in at the time.</p>
-<div id="bec624a3" class="cell" data-execution_count="6">
+<div id="791c2410" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>economic_trends_for_president(df, <span class="st">"Donald Trump"</span>, indicators <span class="op">=</span> <span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -793,7 +818,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="893d382e" class="cell" data-execution_count="7">
+</section>
+<section id="president_party_and_economic_analysis" class="level3">
+<h3 class="anchored" data-anchor-id="president_party_and_economic_analysis">president_party_and_economic_analysis</h3>
+<p>The president_party_and_economic_analysis function allows a user to select a president and from there they will get an analysis on how every state voted in the next election. The final party of the analysis tells how the next election ended and whether or not the party in office switched.</p>
+<div id="b9d9f146" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Barack Obama"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -969,6 +998,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1774,7 +1804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a><span class="fu">### wrangle_data</span></span>
 <span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a>This function, wrangle_data, allows us to wrangle downloadable csvs about economic data. Here we plug in our unemployment rate dataset and it does all of the wrangling and formatting for us. Here are just the first five rows of what the data will look like afterwards.</span>
 <span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a>UNRATE <span class="op">=</span> wrangle_data(</span>
@@ -1785,38 +1815,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-365"><a href="#cb11-365" aria-hidden="true" tabindex="-1"></a>UNRATE.head()</span>
 <span id="cb11-366"><a href="#cb11-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-367"><a href="#cb11-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-368"><a href="#cb11-368" aria-hidden="true" tabindex="-1"></a>The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.</span>
-<span id="cb11-371"><a href="#cb11-371" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-372"><a href="#cb11-372" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> merge_and_sort_data(UNRATE, GDP, CPI)</span>
-<span id="cb11-373"><a href="#cb11-373" aria-hidden="true" tabindex="-1"></a>combined_data.head()</span>
-<span id="cb11-374"><a href="#cb11-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-375"><a href="#cb11-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-376"><a href="#cb11-376" aria-hidden="true" tabindex="-1"></a>Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.</span>
-<span id="cb11-379"><a href="#cb11-379" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-380"><a href="#cb11-380" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States'</span> </span>
-<span id="cb11-381"><a href="#cb11-381" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> <span class="st">"skirk03@byu.edu"</span> </span>
-<span id="cb11-382"><a href="#cb11-382" aria-hidden="true" tabindex="-1"></a>ua <span class="op">=</span> <span class="ss">f"STAT386-class-scraper/1.0 (+</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">)"</span> </span>
-<span id="cb11-383"><a href="#cb11-383" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>{<span class="st">"User-Agent"</span>: ua, <span class="st">"From"</span>: email}, timeout<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb11-384"><a href="#cb11-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-385"><a href="#cb11-385" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> get_presidents_html(ua <span class="op">=</span> <span class="ss">f"STAT386-class-scraper/1.0 (+</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">)"</span>, email <span class="op">=</span> <span class="st">"skirk03@byu.edu"</span>)</span>
-<span id="cb11-386"><a href="#cb11-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-387"><a href="#cb11-387" aria-hidden="true" tabindex="-1"></a>Final_df <span class="op">=</span> add_presidents_to_data(combined_data, text)</span>
-<span id="cb11-388"><a href="#cb11-388" aria-hidden="true" tabindex="-1"></a>Final_df.head(<span class="dv">20</span>)</span>
-<span id="cb11-389"><a href="#cb11-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-390"><a href="#cb11-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-391"><a href="#cb11-391" aria-hidden="true" tabindex="-1"></a>Another function we have allows for some basic eda and creates a correlation matrix for the factors that are used in our dataset and how they influence each other.</span>
-<span id="cb11-394"><a href="#cb11-394" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-395"><a href="#cb11-395" aria-hidden="true" tabindex="-1"></a>simple_eda(df, election_years_only<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-396"><a href="#cb11-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-397"><a href="#cb11-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a>This econimic_trends_for_president function allows users to select a president of their choice and see the economic impact that took place during their presidency. There is an option to select just one of the specified economic evaluators or just two of them or even all three. Users can also filter based on the term that the president was serving in at the time.</span>
-<span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a>economic_trends_for_president(df, <span class="st">"Donald Trump"</span>, indicators <span class="op">=</span> <span class="va">None</span>)</span>
-<span id="cb11-403"><a href="#cb11-403" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-404"><a href="#cb11-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Barack Obama"</span>)</span>
-<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
+<span id="cb11-368"><a href="#cb11-368" aria-hidden="true" tabindex="-1"></a><span class="fu">### merge_and_sort_data</span></span>
+<span id="cb11-369"><a href="#cb11-369" aria-hidden="true" tabindex="-1"></a>The next function, merge_and_sort_data, combines all of the economic data that we gathered into one data set. Here you can see that all three of the data sets are combined together to make one dataset. There are a few missing values but those get taken care of in another function that we have.</span>
+<span id="cb11-372"><a href="#cb11-372" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-373"><a href="#cb11-373" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> merge_and_sort_data(UNRATE, GDP, CPI)</span>
+<span id="cb11-374"><a href="#cb11-374" aria-hidden="true" tabindex="-1"></a>combined_data.head()</span>
+<span id="cb11-375"><a href="#cb11-375" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-376"><a href="#cb11-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-377"><a href="#cb11-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### get_presidents_html &amp; add_presidents_to_data</span></span>
+<span id="cb11-378"><a href="#cb11-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-379"><a href="#cb11-379" aria-hidden="true" tabindex="-1"></a>Our next fuction, get_presidents_html, allows us to scrape the data about presidents of the United States, the years that they were president and the political party that they represented. This allows for easier data combination and cleaning so we will combine that with the last function, add_presidnets_to_data, we combine the data that we have and clean it creating our final president and economic dataset ready to be combined with the election data.</span>
+<span id="cb11-382"><a href="#cb11-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-383"><a href="#cb11-383" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States'</span> </span>
+<span id="cb11-384"><a href="#cb11-384" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> <span class="st">"skirk03@byu.edu"</span> </span>
+<span id="cb11-385"><a href="#cb11-385" aria-hidden="true" tabindex="-1"></a>ua <span class="op">=</span> <span class="ss">f"STAT386-class-scraper/1.0 (+</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">)"</span> </span>
+<span id="cb11-386"><a href="#cb11-386" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>{<span class="st">"User-Agent"</span>: ua, <span class="st">"From"</span>: email}, timeout<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb11-387"><a href="#cb11-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-388"><a href="#cb11-388" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> get_presidents_html(ua <span class="op">=</span> <span class="ss">f"STAT386-class-scraper/1.0 (+</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">)"</span>, email <span class="op">=</span> <span class="st">"skirk03@byu.edu"</span>)</span>
+<span id="cb11-389"><a href="#cb11-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-390"><a href="#cb11-390" aria-hidden="true" tabindex="-1"></a>Final_df <span class="op">=</span> add_presidents_to_data(combined_data, text)</span>
+<span id="cb11-391"><a href="#cb11-391" aria-hidden="true" tabindex="-1"></a>Final_df.head(<span class="dv">20</span>)</span>
+<span id="cb11-392"><a href="#cb11-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-393"><a href="#cb11-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-394"><a href="#cb11-394" aria-hidden="true" tabindex="-1"></a><span class="fu">### simple_eda</span></span>
+<span id="cb11-395"><a href="#cb11-395" aria-hidden="true" tabindex="-1"></a>Another function we have allows for some basic eda and creates a correlation matrix for the factors that are used in our dataset and how they influence each other.</span>
+<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-399"><a href="#cb11-399" aria-hidden="true" tabindex="-1"></a>simple_eda(df, election_years_only<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-400"><a href="#cb11-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-402"><a href="#cb11-402" aria-hidden="true" tabindex="-1"></a><span class="fu">### economic_trends_for_president</span></span>
+<span id="cb11-403"><a href="#cb11-403" aria-hidden="true" tabindex="-1"></a>This econimic_trends_for_president function allows users to select a president of their choice and see the economic impact that took place during their presidency. There is an option to select just one of the specified economic evaluators or just two of them or even all three. Users can also filter based on the term that the president was serving in at the time.</span>
+<span id="cb11-406"><a href="#cb11-406" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-407"><a href="#cb11-407" aria-hidden="true" tabindex="-1"></a>economic_trends_for_president(df, <span class="st">"Donald Trump"</span>, indicators <span class="op">=</span> <span class="va">None</span>)</span>
+<span id="cb11-408"><a href="#cb11-408" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-409"><a href="#cb11-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-410"><a href="#cb11-410" aria-hidden="true" tabindex="-1"></a><span class="fu">### president_party_and_economic_analysis</span></span>
+<span id="cb11-411"><a href="#cb11-411" aria-hidden="true" tabindex="-1"></a>The president_party_and_economic_analysis function allows a user to select a president and from there they will get an analysis on how every state voted in the next election. The final party of the analysis tells how the next election ended and whether or not the party in office switched.</span>
+<span id="cb11-414"><a href="#cb11-414" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-415"><a href="#cb11-415" aria-hidden="true" tabindex="-1"></a>president_party_and_economic_analyis(df, <span class="st">"Barack Obama"</span>)</span>
+<span id="cb11-416"><a href="#cb11-416" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
