@@ -2,3 +2,6 @@ my_package.egg-info/
 __pycache__/
 *.pyc
 venv/
+
+/.quarto/
+**/*.quarto_ipynb

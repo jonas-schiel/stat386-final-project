@@ -2,54 +2,34 @@ project:
   type: website
   output-dir: docs
 
-execute:
-  python: venv/bin/python
-  output-dir: docs
-
 website:
-  title: "Sam Kirkham - Data Science Portfolio"
-  description: "A showcase of my data science projects and learning journey"
-  
+  title: "Sam Kirkham and Jonas Shiel - Final Project"
+  description: "Political Data Analysis"
+
   navbar:
     background: primary
     left:
-      - text: "Home"
-        href: index.md
-      - text: "About Me"
-        href: aboutme.md
-      - text: "Blog"
-        href: blog.qmd
-      - text: "Blog 2"
-        href: DataAcquisation.qmd
-      - text: "Final"
-        href: Final.qmd
+      - text: "Write Up"
+        href: Final.html
       - text: "Demo"
-        href: Package_Demo.qmd
+        href: Package_Demo.html
       - text: "Projects"
         menu:
-          - text: "Home"
-            href: index.md
-          - text: "---" 
-          - text: "About Me"
-            href: aboutme.md
-          - text: "Data Wrangling ang Visualization"
-            href: blog.qmd
-          - text: "BYU Betting Data (Blog 2)"
-            href: DataAcquisation.qmd
+          - text: "Final"
+            href: Final.html
+          - text: "Demo"
+            href: Package_Demo.html
     right:
       - icon: github
         href: https://github.com/Sam-Kirkham
       - icon: linkedin
         href: https://www.linkedin.com/in/samuel-kirkham-1b3730385/
-        
 
   sidebar:
     - title: "Projects"
       contents:
-        - index.md
-        - aboutme.md
-        - blog.qmd
-        - DataAcquisation.qmd
+        - Final.html
+        - Package_Demo.html
 
 format:
   html:
