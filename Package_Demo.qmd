@@ -398,5 +398,5 @@ economic_trends_for_president(df, "Donald Trump", indicators = None)
 ### president_party_and_economic_analysis
 The president_party_and_economic_analysis function allows a user to select a president and from there they will get an analysis on how every state voted in the next election. The final party of the analysis tells how the next election ended and whether or not the party in office switched.
 ```{python}
-president_party_and_economic_analyis(df, "Barack Obama")
+president_party_and_economic_analyis(df, "Barack Obama") 
 ``` 
